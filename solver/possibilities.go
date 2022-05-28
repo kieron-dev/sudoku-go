@@ -1,6 +1,9 @@
 package solver
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type Possibilities []bool
 
@@ -30,8 +33,19 @@ func (p Possibilities) setVal(r, c, val int) {
 
 func (p Possibilities) Print() {
 	for r := 0; r < 9; r++ {
-		for c := 0; c < 9; c++ {
-			fmt.Printf("%v ", p.possibilities(r, c))
+		for i := 0; i < 3; i++ {
+			for c := 0; c < 9; c++ {
+				for j := 0; j < 3; j++ {
+					val := 3*i + j + 1
+					valS := strconv.Itoa(val)
+					if !p.isPossible(r, c, val) {
+						valS = "."
+					}
+					fmt.Printf("%s", valS)
+				}
+				fmt.Print("   ")
+			}
+			fmt.Println()
 		}
 		fmt.Println()
 	}

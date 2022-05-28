@@ -29,12 +29,22 @@ func isNum(b byte) bool {
 }
 
 func (s *Solver) Print() {
+	fmt.Println()
 	for r := 0; r < 9; r++ {
 		for c := 0; c < 9; c++ {
 			pos := s.possibilities.possibilities(r, c)
-			fmt.Printf("%d ", pos[0])
+			sep := " "
+			if c == 2 || c == 5 {
+				sep = "|"
+			}
+			fmt.Printf(" %d %s", pos[0], sep)
 		}
 		fmt.Println()
+		if r == 2 || r == 5 {
+			fmt.Println("-----------+-----------+-----------")
+		} else if r != 8 {
+			fmt.Println("           |           |           ")
+		}
 	}
 }
 
